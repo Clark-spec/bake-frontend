@@ -1,6 +1,26 @@
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import { cn } from "@/lib/cn";
-type CardProps = { children: ReactNode; className?: string };
-export function Card({ children, className }: CardProps) {
-  return <div className={cn("border border-emerald-900/10 rounded-2xl overflow-hidden bg-[#f7f8f0] shadow-sm", className)}>{children}</div>;
+
+export function Card({
+  children,
+  className,
+  style,
+}: {
+  children: ReactNode;
+  className?: string;
+  style?: CSSProperties;
+}) {
+  return (
+    <div className={cn("glass rounded-3xl p-5 sm:p-6", className)} style={style}>
+      {children}
+    </div>
+  );
+}
+
+export function CardTitle({ children, className }: { children: ReactNode; className?: string }) {
+  return (
+    <h3 className={cn("text-[0.95rem] font-semibold tracking-tight text-stone-800", className)}>
+      {children}
+    </h3>
+  );
 }

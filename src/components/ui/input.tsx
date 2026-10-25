@@ -1,15 +1,31 @@
 import type { InputHTMLAttributes } from "react";
 import { cn } from "@/lib/cn";
 
-type InputProps = InputHTMLAttributes<HTMLInputElement> & {
-  error?: string;
-};
+export const fieldClassName =
+  "w-full rounded-2xl border border-white/70 bg-white/55 px-3.5 py-2.5 text-base text-stone-800 shadow-[inset_0_1px_0_rgba(255,255,255,0.65)] outline-none backdrop-blur-md transition-all duration-200 placeholder:text-stone-400 focus:border-amber-400/80 focus:bg-white/85 focus:ring-4 focus:ring-amber-200/50";
 
-export function Input({ className, error, ...props }: InputProps) {
+export function Input({ className, ...props }: InputHTMLAttributes<HTMLInputElement>) {
+  return <input className={cn(fieldClassName, className)} {...props} />;
+}
+
+export function Label({ children, className }: { children: string; className?: string }) {
+  return (
+    <label
+      className={cn(
+        "mb-1.5 block text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-stone-500",
+        className,
+      )}
+    >
+      {children}
+    </label>
+  );
+}
+
+export function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <div>
-      <input className={cn("w-full rounded-xl border bg-white/60 px-3 py-2.5 text-sm text-emerald-950 outline-none focus:border-emerald-700 focus:ring-2 focus:ring-emerald-700/15", error ? "border-red-500" : "border-emerald-900/15", className)} {...props} />
-      {error && <p className="mt-1 text-xs text-red-600">{error}</p>}
+      <Label>{label}</Label>
+      {children}
     </div>
   );
 }

@@ -1,5 +1,36 @@
-import type { TableHTMLAttributes } from "react";
+import type { ReactNode } from "react";
 import { cn } from "@/lib/cn";
-export function Table({ className, ...props }: TableHTMLAttributes<HTMLTableElement>) {
-  return <div className="overflow-x-auto rounded-2xl border border-emerald-900/10 bg-[#f7f8f0]"><table className={cn("w-full text-left text-sm [&_th]:px-5 [&_th]:py-4 [&_th]:font-semibold [&_td]:px-5 [&_td]:py-4 [&_thead]:bg-emerald-100/70 [&_tbody_tr]:border-t [&_tbody_tr]:border-emerald-900/10", className)} {...props} /></div>;
+
+export function Table({ children, className }: { children: ReactNode; className?: string }) {
+  return (
+    <div className={cn("w-full overflow-x-auto", className)}>
+      <table className="data-table w-full border-collapse text-base">{children}</table>
+    </div>
+  );
+}
+
+export function Th({ children, className }: { children: ReactNode; className?: string }) {
+  return (
+    <th
+      className={cn(
+        "border-b border-stone-300/40 px-3.5 py-3 text-left text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-stone-500",
+        className,
+      )}
+    >
+      {children}
+    </th>
+  );
+}
+
+export function Td({ children, className }: { children: ReactNode; className?: string }) {
+  return (
+    <td
+      className={cn(
+        "border-b border-white/50 px-3.5 py-3 align-middle text-[0.95rem] text-stone-700",
+        className,
+      )}
+    >
+      {children}
+    </td>
+  );
 }
