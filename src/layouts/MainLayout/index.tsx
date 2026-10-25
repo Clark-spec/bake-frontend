@@ -99,14 +99,16 @@ export default function MainLayout() {
             aria-hidden="true"
             className="pointer-events-none absolute -right-16 -top-20 h-48 w-48 rounded-full bg-amber-400/20 blur-3xl"
           />
-          <div className="relative px-1 py-1">
+          <div className="relative shrink-0 px-1 py-1">
             <Brand />
           </div>
-          <p className="mb-2 mt-7 px-3 text-[0.62rem] font-semibold uppercase tracking-[0.22em] text-stone-500">
+          <p className="mb-2 mt-7 shrink-0 px-3 text-[0.62rem] font-semibold uppercase tracking-[0.22em] text-stone-500">
             Workspace
           </p>
-          <div className="relative">{nav()}</div>
-          <div className="relative mt-auto">{statusCard}</div>
+          <div className="relative -mr-1 min-h-0 flex-1 overflow-y-auto overscroll-contain pr-1">
+            {nav()}
+          </div>
+          <div className="relative mt-auto shrink-0 pt-3">{statusCard}</div>
         </div>
       </aside>
 
@@ -123,7 +125,7 @@ export default function MainLayout() {
             aria-label="Navigation"
             className="glass-dark absolute bottom-3 left-3 top-3 flex w-[min(19rem,calc(100vw-1.5rem))] animate-drawer-in flex-col overflow-hidden rounded-[1.75rem] p-5"
           >
-            <div className="flex items-center justify-between gap-2">
+            <div className="flex shrink-0 items-center justify-between gap-2">
               <Brand />
               <button
                 type="button"
@@ -134,11 +136,13 @@ export default function MainLayout() {
                 <IconClose className="h-4 w-4" />
               </button>
             </div>
-            <p className="mb-2 mt-7 px-3 text-[0.62rem] font-semibold uppercase tracking-[0.22em] text-stone-500">
+            <p className="mb-2 mt-7 shrink-0 px-3 text-[0.62rem] font-semibold uppercase tracking-[0.22em] text-stone-500">
               Workspace
             </p>
-            <div className="overflow-y-auto">{nav(() => setOpen(false))}</div>
-            <div className="mt-auto pt-4">{statusCard}</div>
+            <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain">
+              {nav(() => setOpen(false))}
+            </div>
+            <div className="mt-auto shrink-0 pt-4">{statusCard}</div>
           </div>
         </div>
       )}
